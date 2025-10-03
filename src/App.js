@@ -1,32 +1,30 @@
 import { useState } from "react";
-import Datas from "./Datas";
+import Header from "./components/Header";
+import Nav from "./components/Nav";
+import Article from "./components/Article";
+import Datas from "./components/Datas";
 
 function App() {
-  const [current, setCurrent] = useState(0);
+  const [mode, setMode] = useState("WELCOME");
+  let content = null;
+
+  if (mode === "WELCOME") {
+    content = <Article title="Welcome" body="Hello, WEB"></Article>;
+  } else if (mode === "READ") {
+    content = <Article title="Welcome" body="Hello, READ"></Article>;
+  }
 
   return (
-    <div style={{ padding: 20 }}>
-      <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
-        {Datas.map((d, idx) => (
-          <button
-            key={d.tab}
-            onClick={() => setCurrent(idx)}
-            style={{
-              padding: "6px 12px",
-              borderRadius: 8,
-              border: "1px solid #cbd5e1",
-              background: current === idx ? "#e0ecff" : "#fff",
-              cursor: "pointer"
-            }}
-          >
-            {d.tab} {idx}
-          </button>
-        ))}
-      </div>
-
-      <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 16 }}>
-        {Datas[current].content}
-      </div>
+    <div>
+      <Header
+        title="WEB"
+        onChangeMode={() => setMode("WELCOME")}
+      />
+      <Nav
+        datas={Datas}
+        onChangeMode={() => setMode("READ")}
+      />
+      {content}
     </div>
   );
 }
