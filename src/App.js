@@ -1,6 +1,5 @@
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
 
-import Index from "./Component/Index";
 import Introduction from "./Component/Introduction";
 import Project from "./Component/Project";
 import Contest from "./Component/Contest";
@@ -10,31 +9,31 @@ import "./App.css";
 export default function App() {
   return (
     <BrowserRouter>
-      <header>
-        김정준의 portfolio <br />
-        테크니컬 아티스트 
+      <header className="top-header">
+        <div className="logo">
+          김정준의 Portfolio
+          <span className="subtitle">Technical Artist</span>
+        </div>
+
+        <nav className="top-nav">
+          <NavLink to="/introduction">소개</NavLink>
+          <NavLink to="/project">프로젝트</NavLink>
+          <NavLink to="/contest">공모전</NavLink>
+          <NavLink to="/career">경력</NavLink>
+        </nav>
       </header>
 
-      <div className="container">
-        <nav>
-          <Link to="/introduction">나의 소개</Link>
-          <Link to="/project">프로젝트</Link>
-          <Link to="/contest">공모전</Link>
-          <Link to="/career">나의 경력</Link>
-        </nav>
+      <main className="page-content">
+        <Routes>
+          <Route path="/" element={<Introduction />} />
+          <Route path="/introduction" element={<Introduction />} />
+          <Route path="/project" element={<Project />} />
+          <Route path="/contest" element={<Contest />} />
+          <Route path="/career" element={<Career />} />
+        </Routes>
+      </main>
 
-        <main>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/introduction" element={<Introduction />} />
-            <Route path="/project" element={<Project />} />
-            <Route path="/contest" element={<Contest />} />
-            <Route path="/career" element={<Career />} />
-          </Routes>
-        </main>
-      </div>
-
-      <footer>
+      <footer className="footer">
         <i>
           Copyright 2023. 지은이 all rights reserved.
           <br />

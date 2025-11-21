@@ -4,14 +4,25 @@ import contests from "./Data/contests";
 export default function Contest() {
   const [tabIndex, setTabIndex] = useState(0);
   const contentChange = (e) => setTabIndex(Number(e.currentTarget.value));
+
   return (
     <div id="contest">
-      {contests.map((contest, i) => (
-        <button key={contest.tab} onClick={contentChange} value={i}>
-          {contest.tab}
-        </button>
-      ))}
-      <div style={{ marginTop: "1em" }}>{contests[tabIndex].content}</div>
+      <div className="project-tabs">
+        {contests.map((c, i) => (
+          <button
+            key={c.tab}
+            value={i}
+            onClick={contentChange}
+            className={`project-tab ${tabIndex === i ? "active" : ""}`}
+          >
+            {c.tab}
+          </button>
+        ))}
+      </div>
+
+      <div className="project-content-card">
+        {contests[tabIndex].content}
+      </div>
     </div>
   );
 }
