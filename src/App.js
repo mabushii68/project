@@ -1,14 +1,28 @@
-import { BrowserRouter, Route, Routes, NavLink } from "react-router-dom";
+import { BrowserRouter, Route, Routes, NavLink, useNavigate, Navigate } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeContext";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "./store/authSlice";
 
 import Introduction from "./Component/Introduction";
 import Project from "./Component/Project";
 import Contest from "./Component/Contest";
 import Career from "./Component/Career";
+import Login from "./Component/Login";
+import ThemeToggle from "./Component/ThemeToggle";
 import "./App.css";
 
-export default function App() {
+function AppContent() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/login'); // Redirect to login page after logout
+  };
+
   return (
-    <BrowserRouter>
+    <>
       <header className="top-header">
         <div className="logo">
           김정준의 Portfolio
@@ -16,20 +30,47 @@ export default function App() {
         </div>
 
         <nav className="top-nav">
-          <NavLink to="/introduction">소개</NavLink>
-          <NavLink to="/project">프로젝트</NavLink>
-          <NavLink to="/contest">공모전</NavLink>
-          <NavLink to="/career">경력</NavLink>
+          <ThemeToggle />
+          {isLoggedIn && (
+            <>
+              <NavLink to="/introduction">소개</NavLink>
+              <NavLink to="/project">프로젝트</NavLink>
+              <NavLink to="/contest">공모전</NavLink>
+              <NavLink to="/career">경력</NavLink>
+            </>
+          )}
+          {isLoggedIn ? (
+            <button className="login-btn" onClick={handleLogout}>
+              로그아웃
+            </button>
+          ) : (
+            <button className="login-btn" onClick={() => navigate('/login')}>
+              로그인
+            </button>
+          )}
         </nav>
       </header>
 
       <main className="page-content">
         <Routes>
-          <Route path="/" element={<Introduction />} />
-          <Route path="/introduction" element={<Introduction />} />
-          <Route path="/project" element={<Project />} />
-          <Route path="/contest" element={<Contest />} />
-          <Route path="/career" element={<Career />} />
+          {isLoggedIn ? (
+            <>
+              <Route path="/introduction" element={<Introduction />} />
+              <Route path="/project" element={<Project />} />
+              <Route path="/contest" element={<Contest />} />
+              <Route path="/career" element={<Career />} />
+              {/* Redirect root to introduction when logged in */}
+              <Route path="/" element={<Navigate to="/introduction" />} />
+              {/* Redirect any other path to introduction */}
+              <Route path="*" element={<Navigate to="/introduction" />} />
+            </>
+          ) : (
+            <>
+              <Route path="/login" element={<Login />} />
+              {/* Redirect any other path to /login when logged out */}
+              <Route path="*" element={<Navigate to="/login" />} />
+            </>
+          )}
         </Routes>
       </main>
 
@@ -40,6 +81,16 @@ export default function App() {
           연락처 : 010-2080-7147
         </i>
       </footer>
-    </BrowserRouter>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }

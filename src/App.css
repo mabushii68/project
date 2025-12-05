@@ -19,8 +19,7 @@
   --ring: 0 0 0 6px rgba(59,130,246,.12);
 }
 
-@media (prefers-color-scheme: dark){
-  :root{
+:root.dark {
     --bg:#020617;              /* 아주 검은색 → 살짝 네이비 */
     --surface:#0b1220;         /* 카드 배경도 한 톤 더 밝게 */
     --text:#e5e7eb;
@@ -31,7 +30,6 @@
     --shadow: 0 18px 40px rgba(0,0,0,.55);
     --ring: 0 0 0 6px rgba(96,165,250,.25);
   }
-}
 
 
 /* === Global === */
@@ -45,7 +43,14 @@ body{
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* 주요 컴포넌트 배경/글자색 전환 효과 */
+.top-header, .logo, .footer, .intro-profile-card, .login-form, .intro-info, .intro-about {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
 
 /* === Header === */
 header{
@@ -91,7 +96,8 @@ button{
   padding: 10px 16px;
   margin: 8px 6px 0 0;
   cursor: pointer;
-  transition: transform .08s ease, box-shadow .15s ease, background .12s ease;
+  /* 테마 전환(background, color)과 클릭 효과(transform, box-shadow) 모두에 transition 적용 */
+  transition: transform .1s ease, box-shadow .1s ease, background-color .3s ease, color .3s ease;
   box-shadow: 0 6px 16px rgba(59,130,246,.25);
 }
 button:hover{
@@ -159,7 +165,6 @@ a:where(:not(nav a)):hover{
 }
 
 .top-nav a{
-  margin-left: 20px;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;          /* 글자 살짝 줄이기 */
@@ -168,8 +173,13 @@ a:where(:not(nav a)):hover{
   color: var(--text);
   padding-bottom: 3px;
   border-bottom: 2px solid transparent;
-  transition: color .18s ease, border-color .18s ease, opacity .18s ease;
+  transition: color .3s ease, border-color .3s ease, opacity .2s ease, transform .1s ease;
   opacity: 0.85;
+  display: inline-block; /* transform을 적용하기 위해 block 요소로 변경 */
+}
+
+.top-nav a:active {
+  transform: scale(0.92); /* 클릭 시 살짝 작아지는 효과 */
 }
 
 .top-nav a:hover{
@@ -182,6 +192,39 @@ a:where(:not(nav a)):hover{
   color: var(--primary);
   opacity: 1;
 }
+
+.top-nav {
+  display: flex;
+  align-items: baseline;
+  gap: 24px; /* 모든 아이템 간격 동일하게 조정 */
+}
+
+.login-btn {
+  /* 전역 button 스타일 일부 덮어쓰기 */
+  background: var(--primary);
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 16px; /* 세로 패딩을 8px에서 6px로 조정 */
+  font-size: 0.95rem;  /* 폰트 크기를 nav 링크와 동일하게 맞춤 */
+  font-weight: 600;
+  box-shadow: none;
+  margin: 0;
+  line-height: 1.65; /* line-height를 body와 맞추어 정렬 개선 */
+}
+
+.login-btn:hover {
+  background: var(--primary-600);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(59,130,246,.2);
+}
+
+.login-btn:active {
+  transform: translateY(0) scale(0.95);
+  box-shadow: 0 2px 5px rgba(59,130,246,.15);
+}
+
+
+
 
 
 .page-content{

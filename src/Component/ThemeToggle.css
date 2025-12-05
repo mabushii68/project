@@ -1,0 +1,17 @@
+.theme-toggle-btn {
+  background: none;
+  border: 4px solid var(--muted);
+  color: var(--muted);
+  border-radius: 8px; /* 로그인 버튼과 통일 */
+  padding: 6px 16px; /* 로그인 버튼과 유사하게 조정 */
+  font-size: 0.95rem;  /* 다른 요소들과 통일 */
+  font-weight: 600;    /* 500 -> 600으로 변경하여 더 굵게 */
+  line-height: 1.65;   /* 수직 정렬을 위해 추가 */
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}

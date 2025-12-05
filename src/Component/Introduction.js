@@ -14,7 +14,7 @@ export default function Introduction() {
 
   return (
     <div className="intro-page">
-      {/* 상단 히어로 + 프로필 카드 */}
+      {}
       <section className="intro-hero">
         <div className="intro-hero-bg" />
 
