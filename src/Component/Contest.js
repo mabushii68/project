@@ -5,8 +5,7 @@ function Contest1() {
   return (
     <div>
       <h1>인디 게임 개발 공모전</h1>
-      <img src="/image/contest1.png" alt="Indie Game Contest" />
-      <fieldset>
+        <fieldset>
         <legend>공모전 개요</legend>
         <ul>
           <li>내년 상반기 인디 게임 개발 공모전에 나갈 예정</li>
@@ -20,7 +19,6 @@ function Contest2() {
   return (
     <div>
       <h1>청년지원 프로젝트 사업</h1>
-      <img src="/image/contest2.png" alt="Youth Support Project" />
       <fieldset>
         <legend>공모전 개요</legend>
         <ul>
@@ -35,7 +33,6 @@ function Contest3() {
   return (
     <div>
       <h1>캡스톤 디자인</h1>
-      <img src="/image/contest3.png" alt="Capstone Design" />
       <fieldset>
         <legend>공모전 개요</legend>
         <ul>

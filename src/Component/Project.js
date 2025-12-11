@@ -1,88 +1,45 @@
 import { useState } from "react";
+import projectSample from "../assets/ProjectSample.png";
+import projectSample2 from "../assets/ProjectSample2.png";
 
-// Sub-components that were previously in separate files
 function Project1() {
   return (
     <div>
-      <h3>React를 이용한 Frontend Web</h3>
-      <img src="/image/react.png" alt="react" />
+      <h2>Unity Level Design</h2>
+      <img src={projectSample} alt="react" />
       <fieldset>
-        <legend>프로젝트 개요</legend>
+        <legend>프로젝트 설명</legend>
         <ul>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
+          <li>개발 툴 : Unity, Blender, Substance 3D Painter</li>
+          <li>VR 환경에서 완벽히 상호작용되는 맵 개발</li>
         </ul>
       </fieldset>
     </div>
   );
 }
+
 
 function Project2() {
   return (
     <div>
-      <h3>VueJs 이용한 Frontend Web</h3>
-      <img src="/image/vue.png" alt="vue" />
+      <h2>Texture Mapping Project</h2>
+      <img src={projectSample2} alt="react" />
       <fieldset>
-        <legend>프로젝트 개요</legend>
+        <legend>프로젝트 설명</legend>
         <ul>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
+          <li>Normal Map, Roughness 공부</li>
+          <li>광산 맵 환경 구현</li>
         </ul>
       </fieldset>
     </div>
   );
 }
 
-function Project3() {
-  return (
-    <div>
-      <h3>NodeJs 이용한 Backend Web</h3>
-      <img src="/image/node.png" alt="node" />
-      <fieldset>
-        <legend>프로젝트 개요</legend>
-        <ul>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-        </ul>
-      </fieldset>
-    </div>
-  );
-}
-
-function Project4() {
-  return (
-    <div>
-      <h3>Proxy 서버를 이용한 Web</h3>
-      <img src="/image/proxy.png" alt="proxy" />
-      <fieldset>
-        <legend>프로젝트 개요</legend>
-        <ul>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-          <li>프로젝트에 대한 내용을 작성</li>
-        </ul>
-      </fieldset>
-    </div>
-  );
-}
 
 // Data that was previously in a separate file
 const projects = [
-  { tab: "React Project", content: <Project1 /> },
-  { tab: "VueJs Project", content: <Project2 /> },
-  { tab: "NodeJs Project", content: <Project3 /> },
-  { tab: "Proxy Project", content: <Project4 /> },
+  { tab: "Level Design Project", content: <Project1 /> },
+  { tab: "Texture Mapping Project", content: <Project2 /> },
 ];
 
 // Main component

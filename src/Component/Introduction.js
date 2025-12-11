@@ -61,10 +61,13 @@ export default function Introduction() {
       <section className="intro-about card">
         <h2>안녕하세요!</h2>
         <p>
-          게임 클라이언트 개발과 그래픽스, 3D 모델링에 관심이 많은 컴퓨터공학 전공
-          김정준입니다. 실시간 렌더링과 게임 아트를 연결하는 테크니컬 아티스트를 목표로
+          게임 클라이언트 개발과 그래픽스, 3D 모델링에 관심이 많은 컴퓨터공학과
+          김정준입니다. 
+          <br />
+          테크니컬 아티스트를 목표로
           Unity, Unreal Engine, Blender, Substance 3D Painter 등을 공부하고 있습니다.
-          실제 프로젝트와 공모전 경험을 통해 게임 클라이언트 프로그래밍과 레벨 디자인,
+          <br />
+          프로젝트와 공모전 경험을 통해 게임 클라이언트 프로그래밍과 레벨 디자인,
           테크니컬 아트 역량을 함께 키워가고 있습니다.
         </p>
       </section>
