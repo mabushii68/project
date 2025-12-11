@@ -76,7 +76,7 @@ function AppContent() {
 
       <footer className="footer">
         <i>
-          Copyright 2023. 지은이 all rights reserved.
+          Copyright 2025. 지은이 all rights reserved.
           <br />
           연락처 : 010-2080-7147
         </i>
