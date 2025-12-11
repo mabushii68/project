@@ -6,10 +6,15 @@ export const login = createAsyncThunk(
   async ({ id, password }, { rejectWithValue }) => {
     // Simulate an API call
     try {
-      // Mock authentication: Check if id and password are correct
+      // Mock authentication for admin
+      if (id === 'admin' && password === 'admin') {
+        const user = { id, name: 'Admin' };
+        return { user, isAdmin: true };
+      }
+      // Mock authentication for regular user
       if (id === 'user' && password === '1234') {
         const user = { id, name: 'Test User' };
-        return { user };
+        return { user, isAdmin: false };
       } else {
         throw new Error('아이디 혹은 비밀번호가 잘못 입력되었습니다.');
       }
@@ -21,6 +26,7 @@ export const login = createAsyncThunk(
 
 const initialState = {
   isLoggedIn: false,
+  isAdmin: false, // Added isAdmin flag
   user: null,
   error: null,
   isLoading: false,
@@ -32,6 +38,7 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.isLoggedIn = false;
+      state.isAdmin = false; // Reset isAdmin on logout
       state.user = null;
       state.error = null;
     },
@@ -46,11 +53,13 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isLoggedIn = true;
         state.user = action.payload.user;
+        state.isAdmin = action.payload.isAdmin; // Set isAdmin from payload
         state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
         state.isLoggedIn = false;
+        state.isAdmin = false;
         state.user = null;
         state.error = action.payload;
       });

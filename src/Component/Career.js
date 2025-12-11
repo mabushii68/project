@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AnimatedSection from "./AnimatedSection";
 
 // Sub-components
 function Career1() {
@@ -78,23 +79,25 @@ export default function Career() {
   const contentChange = (e) => setTabIndex(Number(e.currentTarget.value));
 
   return (
-    <div id="career">
-      <div className="project-tabs">
-        {careers.map((c, i) => (
-          <button
-            key={c.tab}
-            onClick={contentChange}
-            value={i}
-            className={`project-tab ${tabIndex === i ? "active" : ""}`}
-          >
-            {c.tab}
-          </button>
-        ))}
-      </div>
+    <AnimatedSection animationClass="fade-in">
+      <div id="career">
+        <div className="project-tabs">
+          {careers.map((c, i) => (
+            <button
+              key={c.tab}
+              onClick={contentChange}
+              value={i}
+              className={`project-tab ${tabIndex === i ? "active" : ""}`}
+            >
+              {c.tab}
+            </button>
+          ))}
+        </div>
 
-      <div className="project-content-card">
-        {careers[tabIndex].content}
+        <div className="project-content-card">
+          {careers[tabIndex].content}
+        </div>
       </div>
-    </div>
+    </AnimatedSection>
   );
 }

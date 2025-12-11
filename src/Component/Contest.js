@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AnimatedSection from "./AnimatedSection";
 
 // Sub-components
 function Contest1() {
@@ -56,23 +57,25 @@ export default function Contest() {
   const contentChange = (e) => setTabIndex(Number(e.currentTarget.value));
 
   return (
-    <div id="contest">
-      <div className="project-tabs">
-        {contests.map((c, i) => (
-          <button
-            key={c.tab}
-            value={i}
-            onClick={contentChange}
-            className={`project-tab ${tabIndex === i ? "active" : ""}`}
-          >
-            {c.tab}
-          </button>
-        ))}
-      </div>
+    <AnimatedSection animationClass="fade-in">
+      <div id="contest">
+        <div className="project-tabs">
+          {contests.map((c, i) => (
+            <button
+              key={c.tab}
+              value={i}
+              onClick={contentChange}
+              className={`project-tab ${tabIndex === i ? "active" : ""}`}
+            >
+              {c.tab}
+            </button>
+          ))}
+        </div>
 
-      <div className="project-content-card">
-        {contests[tabIndex].content}
+        <div className="project-content-card">
+          {contests[tabIndex].content}
+        </div>
       </div>
-    </div>
+    </AnimatedSection>
   );
 }

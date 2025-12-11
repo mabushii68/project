@@ -9,12 +9,15 @@ import Contest from "./Component/Contest";
 import Career from "./Component/Career";
 import Login from "./Component/Login";
 import ThemeToggle from "./Component/ThemeToggle";
+import AdminRoute from "./Component/AdminRoute";
+import ProjectAdmin from "./Component/ProjectAdmin";
+import ProjectForm from "./Component/ProjectForm";
 import "./App.css";
 
 function AppContent() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, isAdmin } = useSelector((state) => state.auth);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -37,6 +40,7 @@ function AppContent() {
               <NavLink to="/project">프로젝트</NavLink>
               <NavLink to="/contest">공모전</NavLink>
               <NavLink to="/career">경력</NavLink>
+              {isAdmin && <NavLink to="/admin/projects">관리</NavLink>}
             </>
           )}
           {isLoggedIn ? (
@@ -59,6 +63,12 @@ function AppContent() {
               <Route path="/project" element={<Project />} />
               <Route path="/contest" element={<Contest />} />
               <Route path="/career" element={<Career />} />
+              
+              {/* Admin Routes */}
+              <Route path="/admin/projects" element={<AdminRoute><ProjectAdmin /></AdminRoute>} />
+              <Route path="/admin/projects/new" element={<AdminRoute><ProjectForm /></AdminRoute>} />
+              <Route path="/admin/projects/edit/:id" element={<AdminRoute><ProjectForm /></AdminRoute>} />
+
               {/* Redirect root to introduction when logged in */}
               <Route path="/" element={<Navigate to="/introduction" />} />
               {/* Redirect any other path to introduction */}
