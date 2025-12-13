@@ -4,7 +4,7 @@
       "id": 1,
       "tabName": "Level Design Project",
       "title": "Unity Level Design",
-      "image": "/assets/ProjectSample.png",
+      "image": "ProjectSample",
       "description": [
         "개발 툴 : Unity, Blender, Substance 3D Painter",
         "VR 환경에서 완벽히 상호작용되는 맵 개발"
@@ -14,7 +14,7 @@
       "id": 2,
       "tabName": "Texture Mapping Project",
       "title": "Texture Mapping Project",
-      "image": "/assets/ProjectSample2.png",
+      "image": "ProjectSample2",
       "description": [
         "Normal Map, Roughness 공부",
         "광산 맵 환경 구현"

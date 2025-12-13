@@ -5,7 +5,7 @@
 */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=Outfit:wght@500;700&display=swap");
 
-/* === Design Tokens === */
+/* === Design Tokens 전역 디자인 변수 정의 === */
 :root{
   --bg: #f7f7fb;
   --surface: #ffffff;
@@ -17,8 +17,10 @@
   --radius: 12px;
   --shadow: 0 8px 24px rgba(15,23,42,.06);
   --ring: 0 0 0 6px rgba(59,130,246,.12);
+  --intro-about-bg: rgba(255,255,255,0.8); /* Light theme intro-about background */
 }
 
+/* 다크 모드 전용 디자인 토큰 */
 :root.dark {
     --bg:#020617;              /* 아주 검은색 → 살짝 네이비 */
     --surface:#0b1220;         /* 카드 배경도 한 톤 더 밝게 */
@@ -29,12 +31,15 @@
     --accent:#f9fafb;
     --shadow: 0 18px 40px rgba(0,0,0,.55);
     --ring: 0 0 0 6px rgba(96,165,250,.25);
+    --intro-about-bg: rgba(0,0,0,0.4); /* Dark theme intro-about background */
   }
 
 
-/* === Global === */
+/* === Global Base Style === */
 *{box-sizing:border-box}
 html,body{height:100%}
+
+/* 전역 테마 전환을 고려한 body 기본 스타일 */
 body{
   font-family: "Inter","Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   background: var(--bg);
@@ -46,13 +51,13 @@ body{
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 주요 컴포넌트 배경/글자색 전환 효과 */
+/* 테마 변경 시 주요 컴포넌트 색상 전환 효과 */
 .top-header, .logo, .footer, .intro-profile-card, .login-form, .intro-info, .intro-about {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 
-/* === Header === */
+/* === Header / Navigation === */
 header{
   max-width: 1200px;
   margin: 40px auto 12px;
@@ -65,7 +70,7 @@ header{
   color: var(--accent);
 }
 
-/* 이미지 */
+/* 이미지 공통 스타일 */
 img{
   max-width:100%;
   height:auto;
@@ -83,7 +88,7 @@ img{
   color: var(--accent);
 }
 
-/* === Buttons === */
+/* === Buttons : 전역 버튼 스타일 === */
 button{
   appearance: none;
   border: 0;
@@ -165,30 +170,47 @@ a:where(:not(nav a)):hover{
 }
 
 .top-nav a{
+  position: relative; /* Needed for the pseudo-element */
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;          /* 글자 살짝 줄이기 */
   letter-spacing: 0.08em;      /* 자간 조금 띄워서 고급 느낌 */
   text-transform: uppercase;   /* ABOUT / PROJECT 처럼 보이게 */
   color: var(--text);
-  padding-bottom: 3px;
-  border-bottom: 2px solid transparent;
-  transition: color .3s ease, border-color .3s ease, opacity .2s ease, transform .1s ease;
+  padding-bottom: 8px; /* Increased padding for the underline */
+  transition: color .3s ease, opacity .2s ease, transform .1s ease;
   opacity: 0.85;
   display: inline-block; /* transform을 적용하기 위해 block 요소로 변경 */
+}
+
+/* 활성/호버 상태의 네비게이션 링크 하단에 애니메이션 효과를 주는 밑줄 */
+.top-nav a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transform: translateX(-50%);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.top-nav a:hover {
+  color: var(--primary);
+  opacity: 1;
+}
+
+.top-nav a:hover::after,
+.top-nav a.active::after {
+  width: 100%;
 }
 
 .top-nav a:active {
   transform: scale(0.92); /* 클릭 시 살짝 작아지는 효과 */
 }
 
-.top-nav a:hover{
-  color: var(--primary);
-  opacity: 1;
-}
-
 .top-nav a.active{
-  border-color: var(--primary);
   color: var(--primary);
   opacity: 1;
 }
@@ -226,7 +248,7 @@ a:where(:not(nav a)):hover{
 
 
 
-
+/* === Layout === */
 .page-content{
   max-width: 1200px;
   margin: 0 auto;
@@ -337,12 +359,13 @@ a:where(:not(nav a)):hover{
   color: var(--text);
 }
 
+/* 자기소개 카드 (테마별 반투명 배경) */
 .intro-about{
   max-width: 920px;
   margin: 40px auto 20px;
   padding: 40px 48px;
   
-  background: rgba(255,255,255,0.04);      /* 훨씬 가벼운 투명 배경 */
+  background: var(--intro-about-bg);
   border-radius: 22px;                     /* 둥글게 → 부드러운 느낌 */
   backdrop-filter: blur(8px);              /* 유리 느낌 */
   box-shadow: 0 18px 45px rgba(0,0,0,0.35);/* 깔끔한 깊이감 */
@@ -377,6 +400,10 @@ a:where(:not(nav a)):hover{
   padding: 40px 0;
 }
 
+/* === Project Section === */
+
+/* 프로젝트 탭 UI */
+
 .project-tab {
   /* 전역 button 스타일 덮어쓰기 */
   background: rgba(148,163,184,0.1);
@@ -404,7 +431,7 @@ a:where(:not(nav a)):hover{
   border-color: rgba(148,163,184,0.5);
   transform: translateY(-2px);
 }
-
+/* 선택된 프로젝트 탭 강조 */
 .project-tab.active {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   color: #fff;
@@ -413,7 +440,9 @@ a:where(:not(nav a)):hover{
   transform: translateY(-2px);
 }
 
-/* === Animation Keyframes === */
+/* === Animation System === */
+
+/* AnimatedSection에서 사용하는 공통 애니메이션 */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -443,8 +472,9 @@ a:where(:not(nav a)):hover{
   animation: slideUp 0.8s ease-out forwards;
 }
 
-
 /* === Project Card Interaction === */
+
+/* 프로젝트 상세 카드 공통 스타일 */
 .project-content-card {
   background: var(--surface);
   padding: 24px;

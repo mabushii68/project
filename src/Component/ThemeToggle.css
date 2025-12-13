@@ -1,16 +1,23 @@
+/* 다크/라이트 테마 전환 버튼 스타일 */
 .theme-toggle-btn {
   background: none;
   border: 4px solid var(--muted);
   color: var(--muted);
-  border-radius: 8px; /* 로그인 버튼과 통일 */
-  padding: 6px 16px; /* 로그인 버튼과 유사하게 조정 */
-  font-size: 0.95rem;  /* 다른 요소들과 통일 */
-  font-weight: 600;    /* 500 -> 600으로 변경하여 더 굵게 */
-  line-height: 1.65;   /* 수직 정렬을 위해 추가 */
+
+  /* 공통 버튼 디자인과 통일된 라운드 및 여백 */
+  border-radius: 8px;
+  padding: 6px 16px;
+
+  /* 전체 UI와 조화를 맞춘 타이포그래피 설정 */
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.65;
+
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
+/* 마우스 오버 시 테마 색상으로 강조 */
 .theme-toggle-btn:hover {
   border-color: var(--primary);
   color: var(--primary);

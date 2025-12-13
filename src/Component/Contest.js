@@ -19,20 +19,6 @@ function Contest1() {
 function Contest2() {
   return (
     <div>
-      <h1>청년지원 프로젝트 사업</h1>
-      <fieldset>
-        <legend>공모전 개요</legend>
-        <ul>
-          <li>공모전에 대한 내용을 작성</li>
-        </ul>
-      </fieldset>
-    </div>
-  );
-}
-
-function Contest3() {
-  return (
-    <div>
       <h1>캡스톤 디자인</h1>
       <fieldset>
         <legend>공모전 개요</legend>
@@ -45,18 +31,22 @@ function Contest3() {
 }
 
 // Data
+/* 공모전 유형별 탭과 렌더링할 컴포넌트 매핑 */
 const contests = [
   { tab: "인디 게임 공모전", content: <Contest1 /> },
-  { tab: "청년지원 사업", content: <Contest2 /> },
-  { tab: "캡스톤 디자인", content: <Contest3 /> },
+  { tab: "캡스톤 디자인", content: <Contest2 /> },
 ];
 
 // Main Component
 export default function Contest() {
+  /* 현재 선택된 공모전 탭 인덱스 상태 관리 */
   const [tabIndex, setTabIndex] = useState(0);
+
+  /* 탭 버튼 클릭 시 선택된 인덱스로 콘텐츠 전환 */
   const contentChange = (e) => setTabIndex(Number(e.currentTarget.value));
 
   return (
+    /* 스크롤 진입 시 공모전 섹션 애니메이션 효과 적용 */
     <AnimatedSection animationClass="fade-in">
       <div id="contest">
         <div className="project-tabs">
@@ -72,6 +62,7 @@ export default function Contest() {
           ))}
         </div>
 
+        {/* 선택된 탭에 해당하는 공모전 콘텐츠 렌더링 */}
         <div className="project-content-card">
           {contests[tabIndex].content}
         </div>

@@ -1,3 +1,4 @@
+/* 로그인 페이지 전체 레이아웃 (화면 중앙 정렬) */
 .login-page {
   display: flex;
   justify-content: center;
@@ -6,6 +7,7 @@
   flex-direction: column;
 }
 
+/* 로그인 폼 카드 영역 */
 .login-form {
   background: var(--surface);
   padding: 40px;
@@ -16,6 +18,7 @@
   text-align: center;
 }
 
+/* 로그인 제목 스타일 */
 .login-form h2 {
   font-family: "Outfit", "Noto Sans KR", sans-serif;
   font-size: 28px;
@@ -24,28 +27,32 @@
   margin-bottom: 24px;
 }
 
+/* 입력 필드 기본 스타일 */
 .login-form input {
   width: 100%;
   padding: 12px;
   margin-bottom: 16px;
   border-radius: 8px;
-  border: 1px solid #ccc; /* Simplified border for inputs */
+  border: 1px solid #ccc;
   font-size: 16px;
   background-color: var(--bg);
   color: var(--text);
 }
 
+/* 입력 필드 포커스 시 시각적 강조 */
 .login-form input:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
+/* 로그인 버튼 전체 폭 적용 */
 .login-form button {
   width: 100%;
   margin-top: 8px;
 }
 
+/* 이전 페이지로 돌아가는 링크 스타일 */
 .back-link {
   margin-top: 24px;
   color: var(--muted);
@@ -53,6 +60,7 @@
   font-size: 14px;
 }
 
+/* 링크 호버 시 강조 */
 .back-link:hover {
   color: var(--primary);
 }

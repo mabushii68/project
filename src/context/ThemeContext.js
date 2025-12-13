@@ -1,28 +1,28 @@
 import React, { createContext, useState, useEffect } from 'react';
 
+/* 전역 테마 상태를 공유하기 위한 Context 생성 */
 const ThemeContext = createContext();
 
 const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light'); // 기본값은 light
+  /* 현재 테마 상태 관리 (기본값: light) */
+  const [theme, setTheme] = useState('light');
 
+  /* 테마 전환 함수 (light ↔ dark) */
   const toggleTheme = () => {
-    console.log('Toggling theme...');
-    setTheme(prevTheme => {
-      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
-      console.log(`Theme changed from ${prevTheme} to ${newTheme}`);
-      return newTheme;
-    });
+    setTheme(prevTheme =>
+      prevTheme === 'light' ? 'dark' : 'light'
+    );
   };
 
-  // 테마가 변경될 때마다 html 태그에 클래스를 적용/제거합니다.
+  /* 테마 변경 시 html 태그에 클래스 적용하여 전역 스타일 반영 */
   useEffect(() => {
-    const root = document.documentElement; // body 대신 html 태그를 선택
-    console.log(`Applying theme class to <html>: ${theme}`);
+    const root = document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
   }, [theme]);
 
   return (
+    /* 하위 컴포넌트에서 테마 상태와 전환 함수 사용 가능 */
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>

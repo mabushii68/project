@@ -67,6 +67,7 @@ const Career3 = () => {
 };
 
 // Data
+/* 경력 카테고리별 탭과 렌더링할 컴포넌트 매핑 */
 const careers = [
   { tab: "아르바이트/인턴", content: <Career1 /> },
   { tab: "사회봉사/연수", content: <Career2 /> },
@@ -75,10 +76,14 @@ const careers = [
 
 // Main Component
 export default function Career() {
+  /* 현재 선택된 경력 탭 인덱스 상태 관리 */
   const [tabIndex, setTabIndex] = useState(0);
+
+  /* 탭 버튼 클릭 시 선택된 인덱스로 콘텐츠 전환 */
   const contentChange = (e) => setTabIndex(Number(e.currentTarget.value));
 
   return (
+    /* 스크롤 진입 시 Career 섹션에 애니메이션 적용 */
     <AnimatedSection animationClass="fade-in">
       <div id="career">
         <div className="project-tabs">
@@ -94,6 +99,7 @@ export default function Career() {
           ))}
         </div>
 
+        {/* 선택된 탭에 해당하는 경력 콘텐츠 출력 */}
         <div className="project-content-card">
           {careers[tabIndex].content}
         </div>
